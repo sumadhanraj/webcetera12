@@ -1,0 +1,12 @@
+# git branch Dev
+#git branch
+#git checkout Dev
+Go to myfolder1 Create a text file(File1.txt)/project file
+#git status
+#git add File1.txt
+#git remote add first(alias name) https://github.com/techpraganabatch12/PROJECT-A.git
+#git commit -m “first try”
+#git push first Dev
+Go to Github and check branch will be created with code.
+
+Creating second branch in the same master.
