@@ -1,0 +1,17 @@
+GIT
+-------------
+->open source web based toll/interface
+->code hosting platform
+->"SCM" source code management tool
+->supports teeams to work-together to build and modify code
+->tracking code changes,who made changes
+->70% of developers use GIT 
+
+Clone
+----------------
+
+Forking
+-------------------
+
+Branch in GIT
+------------------
