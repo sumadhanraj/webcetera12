@@ -1,0 +1,193 @@
+event handling and Dependency Injection.
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace MYAPPONE
+{
+    public class Sample
+    {
+        public delegate void even_delegate();
+        public delegate void odd_delegate();
+        public event even_delegate event_even;
+        public event odd_delegate event_odd;
+
+        public void addnos()
+        {
+            int a, b;
+            Console.WriteLine("enter 2 nos");
+            a = int.Parse(Console.ReadLine());
+            b = int.Parse(Console.ReadLine());
+            int res = a + b;
+            if (res % 2 == 0)
+                event_even();
+            else
+                event_odd();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Sample obj = new Sample();
+            obj.event_even += new Sample.even_delegate(msg1);
+            obj.addnos();
+          
+            obj.event_odd += new Sample.odd_delegate(msg2);
+            obj.addnos();
+        }
+
+        public static void msg1()
+        {
+            Console.WriteLine("it is even no");
+        }
+
+        public static void msg2()
+        {
+            Console.WriteLine("it is odd no");
+        }
+    }
+}
+
+
+Dependency Injection(Loose coupling):
+
+Tight coupling:
+
+namespace MYAPPONE
+{
+    class Sample
+    {
+        public void add()
+        {
+            Console.WriteLine("addition");
+        }
+
+        public void sub()
+        {
+            Console.WriteLine("difference");
+        }
+
+        public void multiply()
+        {
+            Console.WriteLine("multiply");
+        }
+
+        public void square()
+        {
+            Console.WriteLine("square");
+        }
+    }
+    class DependencyInj
+    {
+        Sample obj = new Sample();
+        public void calculate()
+        {
+            obj.add();
+            obj.sub();
+            obj.multiply();
+            obj.square();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DependencyInj inj = new DependencyInj();
+            inj.calculate();
+        }
+    }
+}
+
+
+Loosely coupled code:(interface)
+
+namespace MYAPPONE
+{
+    interface Icalculator
+    {
+        void compute();
+    }
+    class Sample1 :Icalculator
+    {
+        public void compute()
+        {
+            Console.WriteLine("addition");
+        }
+    }
+
+    class Sample2:Icalculator
+    {
+        public void compute()
+        {
+            Console.WriteLine("difference");
+        }
+    }
+
+    class Sample3:Icalculator
+    {
+        public void compute()
+        {
+            Console.WriteLine("sqr & cb");
+        }
+    }
+
+    class Sample4 : Icalculator
+    {
+        public void compute()
+        {
+            Console.WriteLine("power & exp");
+        }
+    }
+
+    class DependencyInj //client
+    {
+        Icalculator objcal = null;
+        public DependencyInj(Icalculator obj) //Dependency ibj
+        {
+            objcal = obj;
+        }
+        public void calculate()
+        {
+            objcal.compute();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DependencyInj inj1 = new DependencyInj(new Sample1());
+            inj1.calculate();
+
+            DependencyInj inj2 = new DependencyInj(new Sample2());
+            inj2.calculate();
+
+            DependencyInj inj3 = new DependencyInj(new Sample3());
+            inj3.calculate();
+
+            DependencyInj inj4 = new DependencyInj(new Sample4());
+            inj4.calculate();
+        }
+    }
+}
+
+
+
+GIT:
+->open source web-based tool/interface
+->code hosting platform
+->"SCM" source code management tool.
+->supports teams to work-together to build and modify code.
+->tracking code changes,who made changes.
+->70% of developers use GIT 
+
+
+
+
+
+
+
+
+
+
